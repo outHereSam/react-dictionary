@@ -1,8 +1,24 @@
+import { useContext } from "react";
+import { ThemeContext, ThemeProvider } from "./contexts/ThemeContext";
+import { FontProvider } from "./contexts/FontContext";
+
+function ThemeSwitcher() {
+  const { theme, toggleTheme } = useContext(ThemeContext);
+
+  return (
+    <button onClick={toggleTheme}>
+      Switch to {theme === "light" ? "🌚" : "🌝"}
+    </button>
+  );
+}
+
 function App() {
   return (
-    <>
-      <h1>Dictionary Web App</h1>
-    </>
+    <ThemeProvider>
+      <FontProvider>
+        <ThemeSwitcher />
+      </FontProvider>
+    </ThemeProvider>
   );
 }
 
